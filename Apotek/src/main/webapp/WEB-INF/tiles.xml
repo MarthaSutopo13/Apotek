@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+<tiles-definitions>
+ 	
+ 	<definition name="baseLayout" template="/WEB-INF/views/layout.jsp">
+  		<put-attribute name="title" value="Apotek : Welcome" />
+  		<put-attribute name="header" value="/WEB-INF/Layout/header.jsp" />
+  		<put-attribute name="body" value="" />
+  		<put-attribute name="panelButton" value="" />
+  		<put-attribute name="panelButtonEntry" value="" />
+  		<put-attribute name="footer" value="/WEB-INF/Layout/footer.jsp" />
+ 	</definition>   
+ 	
+ 	<definition name="ajaxLayout" template="/WEB-INF/views/ajaxLayout.jsp">
+ 		<put-attribute name="body" value="" />
+ 	</definition>
+ 	
+ 	<definition name="printLayout" template="/WEB-INF/views/PrintLayout.jsp">
+ 	</definition>
+ 	
+ 	<definition name="printProcessLayoutPortrait" template="/WEB-INF/views/PrintLayoutPortrait.jsp">
+ 	</definition>
+ 	
+ 	<definition name="WindowBrowseBrand" extends="ajaxLayout">
+  		<put-attribute name="body" value="/WEB-INF/views/WindowBrowse/WindowBrowseBrand.jsp" />     
+ 	</definition>
+ 	
+ 	<definition name="Supplier/Create" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Supplier" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Supplier/supplierForm.jsp" />
+	</definition>
+	
+	<definition name="Supplier/Browse" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Supplier" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Supplier/supplierView.jsp" />
+	</definition>
+	
+	<definition name="Supplier/Edit" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Supplier" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Supplier/supplierEdit.jsp" />
+	</definition>
+	
+	<definition name="Customer/Create" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Customer" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Customer/customerForm.jsp" />
+	</definition>
+	
+	<definition name="Customer/Browse" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Customer" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Customer/customerView.jsp" />
+	</definition>
+	
+	<definition name="Customer/Edit" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Customer" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Customer/customerEdit.jsp" />
+	</definition>
+	
+	<definition name="KategoriBrand/Create" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Kategori Brand" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/KategoriBrand/kategoribrandForm.jsp" />
+	</definition>
+	
+	<definition name="Kategori/Browse" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Kategori" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/KategoriBrand/kategoriView.jsp" />
+	</definition>
+	
+	<definition name="KategoriBrand/Edit" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Kategori Brand" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/KategoriBrand/kategoribrandEdit.jsp" />
+	</definition>
+	
+	<definition name="Brand/Browse" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Brand" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/KategoriBrand/brandView.jsp" />
+	</definition>
+	
+	<definition name="Satuan/Create" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Satuan" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Satuan/satuanForm.jsp" />
+	</definition>
+	
+	<definition name="Satuan/Browse" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Satuan" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Satuan/satuanView.jsp" />
+	</definition>
+	
+	<definition name="Satuan/Edit" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Satuan" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Satuan/satuanEdit.jsp" />
+	</definition>
+	
+	<definition name="Barang/Create" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Barang" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Barang/barangForm.jsp" />
+	</definition>
+	
+	<definition name="Barang/Browse" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Barang" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Barang/barangView.jsp" />
+	</definition>
+	
+	<definition name="Barang/Edit" extends="baseLayout">
+  		<put-attribute name="title" value="Apotek : Barang" /> 
+  		<put-attribute name="navigation" value="" />
+  		<put-attribute name="body" value="/WEB-INF/views/Barang/barangEdit.jsp" />
+	</definition>
+</tiles-definitions>

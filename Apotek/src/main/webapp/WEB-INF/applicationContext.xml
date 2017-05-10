@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <beans xmlns="http://www.springframework.org/schema/beans" -->
+<!-- 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" -->
+<!-- 	xmlns:tx="http://www.springframework.org/schema/tx" -->
+<!-- 	xmlns:mvc="http://www.springframework.org/schema/mvc" -->
+<!-- 	xmlns:context="http://www.springframework.org/schema/context" -->
+<!-- 	xsi:schemaLocation="http://www.springframework.org/schema/beans -->
+<!-- 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd -->
+<!-- 	http://www.springframework.org/schema/tx -->
+<!-- 	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd -->
+<!-- 	http://www.springframework.org/schema/context -->
+<!-- 	http://www.springframework.org/schema/context/spring-context-3.0.xsd -->
+<!-- 	http://www.springframework.org/schema/mvc -->
+<!-- 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"> -->
+
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+	xmlns:p="http://www.springframework.org/schema/p">
+	
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com"></context:component-scan>
+	
+	<mvc:annotation-driven/>
+	
+	<mvc:resources location="/resources/" mapping="/resources/**"/>
+	
+	<!-- Tiles Template -->
+ 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles2.TilesConfigurer">
+		<property name="definitions">
+			<list>  
+				<value>/WEB-INF/tiles.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass" value="org.springframework.web.servlet.view.tiles2.TilesView"/>
+	</bean>
+	
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/views/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="testing" />
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+	
+	<bean id="localeChangeInterceptor"
+		class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+		<property name="paramName" value="lang" />
+	</bean>
+
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+		<property name="defaultLocale" value="en" />
+	</bean>
+
+	<bean id="handlerMapping" 
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="interceptors" ref="localeChangeInterceptor" />
+	</bean>
+	
+	<bean id="dsApotek"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url" value="jdbc:postgresql://localhost:5432/Apotek" />
+		<property name="username" value="TEST21"/>  
+		<property name="password" value="123456" />
+	</bean>
+	
+	
+<!-- 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"> -->
+<!-- 		<property name="driverClassName" value="org.postgresql.Driver"></property> -->
+<!-- 		<property name="url" value="jdbc:postgresql://localhost:5432/Apotek"></property> -->
+<!-- 		<property name="username" value="TEST21"></property> -->
+<!-- 		<property name="password" value="123456"></property> -->
+<!-- 	</bean> -->
+	
+	<!-- 	Session Factory Declaration -->
+	<bean id="sfApotek"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dsApotek"></property>
+		<property name="packagesToScan" value="com.*"></property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">false</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="M_SupplierAdapter" class="com.adapters.M_SupplierAdapter" >
+	    <property name="sessionFactory" ref="sfApotek" />
+	</bean>
+	<bean id="M_CustomerAdapter" class="com.adapters.M_CustomerAdapter" >
+	    <property name="sessionFactory" ref="sfApotek" />
+	</bean>
+	<bean id="M_KategoriAdapter" class="com.adapters.M_KategoriAdapter" >
+	    <property name="sessionFactory" ref="sfApotek" />
+	</bean>
+	<bean id="M_BrandAdapter" class="com.adapters.M_BrandAdapter" >
+	    <property name="sessionFactory" ref="sfApotek" />
+	</bean>
+	<bean id="M_SatuanAdapter" class="com.adapters.M_SatuanAdapter" >
+	    <property name="sessionFactory" ref="sfApotek" />
+	</bean>
+	<bean id="M_BarangAdapter" class="com.adapters.M_BarangAdapter" >
+	    <property name="sessionFactory" ref="sfApotek" />
+	</bean>
+	
+	<!-- 	END HIBERNATE -->
+	
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+    
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="10000000"/>
+    </bean>
+	
+	<mvc:interceptors>
+		<ref bean="localeChangeInterceptor" />
+	</mvc:interceptors>
+</beans>

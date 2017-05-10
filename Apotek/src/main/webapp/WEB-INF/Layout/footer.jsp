@@ -1,0 +1,1 @@
+<center>Copyright &copy; Apotek 2016</center>
